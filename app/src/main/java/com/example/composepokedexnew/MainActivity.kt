@@ -17,7 +17,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        // asd
+        // as
         setContent {
             JetpackComposePokedexTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
