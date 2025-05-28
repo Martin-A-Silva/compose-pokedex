@@ -6,6 +6,10 @@ plugins {
     alias(libs.plugins.hiltAndroid)
 }
 
+hilt {
+    enableAggregatingTask = false
+}
+
 android {
     namespace = "com.example.composepokedexnew"
     compileSdk = 35
@@ -60,11 +64,10 @@ dependencies {
     implementation(libs.coroutines.core)
     implementation(libs.coroutines.android)
     implementation(libs.coil)
-    implementation(libs.accompanist.coil)
+    //implementation(libs.accompanist.coil)
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler)
     implementation(libs.palette)
-    implementation(libs.hilt.lifecycle.viewmodel)
     implementation(libs.hilt.navigation.compose)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
