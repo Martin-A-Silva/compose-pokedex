@@ -52,7 +52,7 @@ import com.example.composepokedexnew.data.models.PokedexListEntry
 import com.example.composepokedexnew.ui.theme.RobotoCondensed
 
 @Composable
-fun PokemonListScreen(navController: NavController, modifier: Modifier = Modifier) {
+fun PokemonListScreen(navController: NavController, modifier: Modifier = Modifier, viewModel: PokemonListViewModel = hiltViewModel()) {
     Surface(
         color = MaterialTheme.colors.background,
         modifier = Modifier.fillMaxSize()
@@ -71,7 +71,7 @@ fun PokemonListScreen(navController: NavController, modifier: Modifier = Modifie
                     .fillMaxWidth()
                     .padding(16.dp)
             ) {
-
+                viewModel.searchPokemonList(it)
             }
             Spacer(modifier = Modifier.height(16.dp))
             PokemonList(navController)
@@ -126,12 +126,13 @@ fun PokemonList(
     val endReached by remember { viewModel.endReached }
     val isLoading by remember { viewModel.isLoading }
     val loadError by remember { viewModel.loadError }
+    val isSearching by remember { viewModel.isSearching }
 
     LazyColumn(contentPadding = PaddingValues(16.dp)) {
         val itemCount =
             if (pokemonList.size % 2 == 0) pokemonList.size / 2 else pokemonList.size / 2 + 1
         items(itemCount) {
-            if (it >= itemCount - 1 && endReached.not()) {
+            if (it >= itemCount - 1 && endReached.not() && isLoading.not() && isSearching.not()) {
                 viewModel.loadPokemonPaginated()
             }
             PokedexRow(rowIndex = it, entries = pokemonList, navController = navController)
@@ -240,7 +241,7 @@ fun PokedexRow(
                     modifier = Modifier.weight(1f)
                 )
             } else {
-                Spacer(modifier = Modifier.width(16.dp))
+                Spacer(modifier = Modifier.weight(1f))
             }
         }
     }
