@@ -1,14 +1,16 @@
 package com.example.composepokedexnew.data.remote.responses
 
+import com.google.gson.annotations.SerializedName
+
 data class Sprites(
-    val back_default: String,
-    val back_female: Any,
-    val back_shiny: String,
-    val back_shiny_female: Any,
-    val front_default: String,
-    val front_female: Any,
-    val front_shiny: String,
-    val front_shiny_female: Any,
+    val backDefault: String,
+    val backFemale: String,
+    val backShiny: String,
+    val backShinyFemale: String,
+    val frontDefault: String,
+    val frontFemale: String,
+    val frontShiny: String,
+    val frontShinyFemale: String,
     val other: Other,
     val versions: Versions
 )

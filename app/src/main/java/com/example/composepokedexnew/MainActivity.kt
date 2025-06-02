@@ -15,6 +15,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.example.composepokedexnew.pokemondetail.PokemonDetailScreen
 import com.example.composepokedexnew.pokemonlist.PokemonListScreen
 import com.example.composepokedexnew.ui.theme.JetpackComposePokedexTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -23,7 +24,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
+        //enableEdgeToEdge()
         setContent {
             JetpackComposePokedexTheme {
                 val navController = rememberNavController()
@@ -48,6 +49,7 @@ class MainActivity : ComponentActivity() {
                         val pokemonName = remember {
                             it.arguments?.getString("pokemonName")
                         }
+                        PokemonDetailScreen(dominantColor = dominantColor, pokemonName = pokemonName?.lowercase() ?: "", navController = navController)
                     }
                 }
             }
