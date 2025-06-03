@@ -64,14 +64,13 @@ fun PokemonDetailScreen(
     val pokemonInfo = produceState<Resource<Pokemon>>(initialValue = Resource.Loading()) {
         value = viewModel.getPokemonInfo(pokemonName)
     }.value
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(dominantColor)
-            .padding(bottom = 16.dp)
+    Box(modifier = Modifier
+        .fillMaxSize()
+        .background(dominantColor)
+        .padding(bottom = 16.dp)
     ) {
         PokemonDetailTopSection(
-            navController,
+            navController = navController,
             modifier = Modifier
                 .fillMaxWidth()
                 .fillMaxHeight(0.2f)
@@ -161,7 +160,7 @@ fun PokemonDetailTopSection(
 fun PokemonDetailStateWrapper(
     pokemonInfo: Resource<Pokemon>,
     modifier: Modifier = Modifier,
-    loadingModifier: Modifier
+    loadingModifier: Modifier = Modifier
 ) {
     when (pokemonInfo) {
         is Resource.Success -> {
@@ -192,7 +191,7 @@ fun PokemonDetailSection(
     val scrollState = rememberScrollState()
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = Modifier
+        modifier = modifier
             .fillMaxSize()
             .offset(y = 100.dp)
             .verticalScroll(scrollState)
