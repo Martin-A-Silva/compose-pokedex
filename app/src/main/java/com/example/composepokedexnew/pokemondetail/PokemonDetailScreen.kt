@@ -51,6 +51,7 @@ import com.example.composepokedexnew.data.remote.responses.Type
 import com.example.composepokedexnew.util.Resource
 import com.example.composepokedexnew.util.capitalize
 import com.example.composepokedexnew.util.parseTypeToColor
+import kotlin.math.round
 
 @Composable
 fun PokemonDetailScreen(
@@ -246,8 +247,8 @@ fun PokemonDetailDataSection(
     modifier: Modifier = Modifier
 ) {
 
-    val pokemonWeightInKg = remember { pokemonWeight / 10 }
-    val pokemonHeightInMeters = remember { pokemonHeight / 10 }
+    val pokemonWeightInKg = remember { round(pokemonWeight * 100f) / 1000f }
+    val pokemonHeightInMeters = remember { round(pokemonHeight * 100f) / 1000f }
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -274,7 +275,7 @@ fun PokemonDetailDataSection(
 
 @Composable
 fun PokemonDetailDataItem(
-    dataValue: Int,
+    dataValue: Float,
     dataUnit: String,
     dataIcon: Painter,
     modifier: Modifier = Modifier
