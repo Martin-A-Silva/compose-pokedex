@@ -34,8 +34,8 @@ fun parseTypeToColor(type: Type) : Color {
     }
 }
 
-fun parseStatToColor(stat: String) : Color {
-    return when (stat) {
+fun parseStatToColor(stat: Stat) : Color {
+    return when (stat.stat.name) {
         "hp" -> HPColor
         "attack" -> AtkColor
         "defense" -> DefColor
